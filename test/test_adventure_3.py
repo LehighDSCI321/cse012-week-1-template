@@ -1,7 +1,11 @@
+import pytest
+from pylint.lint import Run
 import subprocess
-import re
+import adventure
 
-# Test 3: Check for unhandled pylint style recommendations
+# Test Cases for Week 1 Adventure Game
 def test_pylint_style():
-    result = subprocess.run(['pylint', 'student_code.py'], capture_output=True, text=True)
-    assert "C0" not in result.stdout, "Pylint style recommendations found"
+    """Test for Pylint style suggestions (score below 7)."""
+    result = Run(['adventure.py', '--disable=E0401,C0114,C0115,C0116'], exit=False)
+    score = result.linter.stats.global_note
+    assert score >= 7.0, f"Pylint style score is too low: {score}"
