@@ -1,26 +1,15 @@
 import pytest
-from student_code import ShortestPathDAG
+from pylint.lint import Run
+import subprocess
+import adventure
 
-class TestShortestPathDAG:
-    @pytest.fixture
-    def setup_dag(self):
-        dag = ShortestPathDAG()
-        # Add nodes and edges
-        dag.add_node('A')
-        dag.add_node('B')
-        dag.add_node('C')
-        dag.add_node('D')
-        dag.add_node('E')
-        dag.add_edge('A', 'B', edge_weight=1)
-        dag.add_edge('B', 'C', edge_weight=2)
-        dag.add_edge('A', 'C', edge_weight=4)
-        dag.add_edge('C', 'D', edge_weight=3)
-        dag.add_edge('A', 'E', edge_weight=10)
-        return dag
+# Test Cases for Week 1 Adventure Game
 
-
-
-    def test_same_node_path(self, setup_dag):
-        dag = setup_dag
-        _, distance = dag.shortest_path('A', 'A')
-        assert distance == 0, "Shortest path from A to A should be 0"
+def test_arithmetic_operations():
+    """Test for correct arithmetic operations."""
+    original_health = 100  # Assuming initial value
+    original_strength = 75.5 # Assuming initial value
+    expected_health = original_health - 20
+    expected_strength = original_strength + 15.5
+    assert adventure.health == expected_health, "health was not updated correctly"
+    assert adventure.strength == expected_strength, "strength was not updated correctly"
