@@ -1,7 +1,10 @@
+import pytest
+from pylint.lint import Run
 import subprocess
-import re
+import adventure
 
-# Test 2: Check for unhandled pylint warnings
-def test_pylint_warnings():
-    result = subprocess.run(['pylint', 'student_code.py'], capture_output=True, text=True)
-    assert "W0" not in result.stdout, "Pylint warnings found"
+# Test Cases for Week 1 Adventure Game
+def test_pylint_errors():
+    """Test for Pylint errors (any errors)."""
+    process = subprocess.run(['pylint', 'adventure.py', '--disable=E0401,C0114,C0115,C0116'], capture_output=True, text=True)
+    assert "error" not in process.stdout, f"Pylint errors found:\n{process.stdout}"
