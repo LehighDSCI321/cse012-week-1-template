@@ -1,7 +1,12 @@
+import pytest
+from pylint.lint import Run
 import subprocess
-import re
+import adventure
 
-# Test 1: Check for unhandled pylint errors
-def test_pylint_errors():
-    result = subprocess.run(['pylint', 'student_code.py'], capture_output=True, text=True)
-    assert "E0" not in result.stdout, "Pylint errors found"
+# Test Cases for Week 1 Adventure Game
+
+def test_pylint_warnings():
+    """Test for Pylint warnings (score below 5)."""
+    result = Run(['adventure.py', '--disable=E0401,C0114,C0115,C0116'], exit=False)
+    score = result.linter.stats.global_note
+    assert score >= 5.0, f"Pylint warning score is too low: {score}"
